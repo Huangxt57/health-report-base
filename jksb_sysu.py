@@ -12,7 +12,7 @@ chatid = os.environ['TG_CHATID']
 ocr_token = os.environ['OCR_TOKEN']
 
 # 失败后随机 3 - 5 s 后重试，最多 30 次
-@retry(wait_random_min=3000, wait_random_max=50000, stop_max_attempt_number=20)
+@retry(wait_random_min=3000, wait_random_max=50000, stop_max_attempt_number=30)
 def login():
     print("访问登录页面")
     driver.get("https://cas.sysu.edu.cn/cas/login")
@@ -41,7 +41,7 @@ def login():
         raise Exception('登陆失败')
 
 # 失败后随机 3 - 5s 后重试，最多 20 次
-@retry(wait_random_min=3000, wait_random_max=5000, stop_max_attempt_number=20)
+@retry(wait_random_min=3000, wait_random_max=5000, stop_max_attempt_number=30)
 def jksb():
     print('访问健康申报页面')
     driver.get("http://jksb.sysu.edu.cn/infoplus/form/XNYQSB/start")
